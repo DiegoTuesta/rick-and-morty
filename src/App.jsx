@@ -67,6 +67,7 @@ function App() {
   }
 
   function getLocations(str) {
+    setPage(1)
     if (str.select === "0") {
       setData(null)
       // console.log(str.select)
