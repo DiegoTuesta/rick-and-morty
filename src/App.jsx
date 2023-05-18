@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
-import Location from "./components/Location";
+import InputLocation from "./components/InputLocation";
+import Location from './components/Location'
 import ResidentInfo from "./components/ResidentInfo";
 import axios from "axios";
 import Pagination from "./components/Pagination";
+
 
 function App() {
   const [data, setData] = useState(null);
   const [locations, setLocations] = useState([]);
   const [page, setPage] = useState(1);
+  // const [idRandom, setIdRandom] = useState(0)
 
   function getApi(params) {
     if (params.type === 0) {
-      setLocations([])
-      const idRandom = Math.floor(Math.random() * 126);
+      // setLocations([])
+      const idRandom = Math.floor(Math.random() * 126 + 1);
+      
       axios
         .get(`${params.urlApi}/${idRandom}`)
         .then((res) =>
@@ -37,6 +41,7 @@ function App() {
             data2.push({ id: item.id, name: item.name })
           );
           setLocations(data2);
+          // setLocations([])
         })
         .catch((err) => console.error(err));
     }
@@ -63,13 +68,16 @@ function App() {
 
   function getLocations(str) {
     if (str.select === "0") {
+      setData(null)
       // console.log(str.select)
       getData("random" + Math.floor(Math.random() * 15));
     } else if (str.select === "1") {
+      setData(null)
       // console.log('Number')
       getData(str.srt);
       // console.log(Number(str.srt))
     } else {
+      setData(null)
       getData(str.srt);
     }
     // console.log(str)
@@ -88,15 +96,14 @@ function App() {
     : 0;
   return (
     <>
-      {data && (
-        <Location data={data} dataSelect={locations} srtSearch={getLocations} />
-      )}
+        <InputLocation  dataSelect={locations} srtSearch={getLocations} />
 
       
 
       {
       data && data.residents?.length > 0 ? 
       <>
+      <Location data={data} />
       <Pagination page={page} setPage={setPage} quantyPage={quantyPage} />
        <div className="card-content">
           <div className="card-content-son">
@@ -108,7 +115,10 @@ function App() {
       </>
        
        : (
-        ""
+        
+        <div className="loading-content" >
+          <div className="custom-loader"></div>
+        </div>
       )}
     </>
   );
