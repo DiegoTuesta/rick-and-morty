@@ -7,15 +7,15 @@ const Location = ({data}) => {
           <div className="content-location-son">
             <div className="div-son" >
               <h3>Nombre:</h3>
-              <p>{data.data?.name}</p>
+              <p>{data.name}</p>
             </div>
             <div className="div-son">
               <h3>Tipo:</h3>
-              <p>{data.data?.type}</p>
+              <p>{data.type}</p>
             </div>
             <div className="div-son">
               <h3>Dimension:</h3>
-              <p>{data.data?.dimension}</p>
+              <p>{data.dimension}</p>
             </div>
             <div className="div-son">
               <h3>Poblacion:</h3>
