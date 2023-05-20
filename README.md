@@ -1,6 +1,6 @@
 # Funcionalidad
 * Al iniciar el app, carga locacion random
-* Tiene 3 formas de listar: random, por id y por nombre de locations
+* Tiene 2 formas de listar: id ramdon o por id seleccionado por el select de nombres de locations
 * Tiene un loading
 * Tiene Paginacion
 
